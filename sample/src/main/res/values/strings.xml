@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Kref Sample App</string>
+    <string name="bt_save">SAVE</string>
+    <string name="tv_saved_pref">Saved Pref</string>
+</resources>
