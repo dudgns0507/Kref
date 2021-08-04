@@ -16,7 +16,7 @@ allprojects {
 }
 
 dependencies {
-  implementation 'com.github.dudgns0507:Kref:1.0'
+  implementation 'com.github.dudgns0507:Kref:1.0.1'
 }
 ```
 
