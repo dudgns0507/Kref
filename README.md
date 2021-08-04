@@ -34,6 +34,9 @@ class App: Application() {
         KrefManager.init(this)
         // KrefManager.init(this, "SharedPreference Name")
         // KrefManager.init(this, "SharedPreference Name", Context.MODE_PRIVATE)
+
+        // Clear SharedPreference
+        KrefManager.instance.clear()
     }
 }
 ```
