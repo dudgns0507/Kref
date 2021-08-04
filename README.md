@@ -74,10 +74,7 @@ data class Test(
     var a: String
 )
 
-var kref: Test by ObjectPref(
-    Test::class, 
-    default = Test(a = "")
-)
+var kref: Test by ObjectPref(Test::class, default = Test(a = ""))
 ```
 
 Author
