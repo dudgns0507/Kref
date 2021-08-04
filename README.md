@@ -1,7 +1,7 @@
 # Kref
  Android SharedPreference management library made for kotlin
 
- 
+ [![](https://jitpack.io/v/dudgns0507/kref.svg)](https://jitpack.io/#dudgns0507/kref)
 Download
 -------------------
 
@@ -36,7 +36,7 @@ class App: Application() {
         // KrefManager.init(this, "SharedPreference Name", Context.MODE_PRIVATE)
 
         // Clear SharedPreference
-        KrefManager.instance.clear()
+        // KrefManager.instance.clear()
     }
 }
 ```
