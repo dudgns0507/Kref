@@ -1,7 +1,8 @@
 # Kref
  Android SharedPreference management library made for kotlin
 
- [![](https://jitpack.io/v/dudgns0507/kref.svg)](https://jitpack.io/#dudgns0507/kref)
+ [![](https://jitpack.io/v/dudgns0507/kref.svg)](https://jitpack.io/#dudgns0507/kref)  
+
 Download
 -------------------
 
