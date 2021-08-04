@@ -9,7 +9,7 @@ import com.github.dudgns0507.kref.pref.base.Preference
 import kotlin.reflect.KClass
 import kotlin.reflect.KProperty
 
-open class ObjectPref<T : Any>(val type: KClass<T>, default: T, name: String = "") :
+open class ObjectPref<T : Any>(private val type: KClass<T>, default: T, name: String = "") :
     Preference<T>(default, name) {
     override val prefs: SharedPreferences = KrefManager.instance.prefs
 
