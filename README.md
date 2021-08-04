@@ -9,14 +9,14 @@ Use Gradle:
 
 ```gradle
 allprojects {
-  repositories {
-    ...
-    maven { url 'https://jitpack.io' }
-  }
+    repositories {
+        ...
+        maven { url 'https://jitpack.io' }
+    }
 }
 
 dependencies {
-  implementation 'com.github.dudgns0507:Kref:1.0.1'
+    implementation 'com.github.dudgns0507:Kref:1.0.1'
 }
 ```
 
@@ -69,6 +69,15 @@ var kref: Int by IntPref(default = 0)
 var kref: Long by LongPref(default = 0L)
 var kref: Float by FloatPref(default = 0F)
 var kref: List<Any> by ListPref(default = arrayListOf()))
+
+data class Test(
+    var a: String
+)
+
+var kref: Test by ObjectPref(
+    Test::class, 
+    default = Test(a = "")
+)
 ```
 
 Author
