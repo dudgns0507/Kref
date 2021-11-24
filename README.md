@@ -27,7 +27,7 @@ How do I use Kref?
 
 Initialize KrefManager:
 
-```java
+```kotlin
 class App: Application() {
     override fun onCreate() {
         super.onCreate()
@@ -41,7 +41,7 @@ class App: Application() {
 
 Save data to SharedPreference (Example):
 
-```java
+```kotlin
 class PrefManager {
     companion object {
         val instance = PrefManager()
@@ -58,19 +58,16 @@ PrefManager.instance.kString = "Kref"
 
 // Clear all value
 KrefManager.instance.clear()
-
-// Clear value
-KrefManager.instance.kString.clear()
 ```
 
 Support Types:
 
-```java
+```kotlin
 // default is default value when SharedPreference key-value is empty
 // name is SharedPreference key (if name is blank default is "{variable name}_Kref")
 
 var kref: String by Kref(default = "", name = "")
-var kref: String? by Kref()
+var kref: String? by Kref(default = null)
 var kref: Boolean by Kref(default = false)
 var kref: Int by Kref(default = 0)
 var kref: Long by Kref(default = 0L)
