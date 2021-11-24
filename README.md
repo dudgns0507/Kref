@@ -73,12 +73,6 @@ var kref: Int by Kref(default = 0)
 var kref: Long by Kref(default = 0L)
 var kref: Float by Kref(default = 0F)
 var kref: List<Any> by Kref(default = arrayListOf()))
-
-data class Test(
-    var a: String
-)
-
-var kref: Test by ObjectPref(Test::class, default = Test(a = ""))
 ```
 
 Author
