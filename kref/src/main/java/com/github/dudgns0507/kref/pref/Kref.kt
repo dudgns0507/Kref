@@ -13,25 +13,21 @@ import kotlin.reflect.KProperty
 
 class Kref<T>(
     private val default: T?, var name: String = ""
-) : ReadWriteProperty<Any?, T> {
+) : ReadWriteProperty<Any?, T?> {
     private val prefs: SharedPreferences = KrefManager.instance.prefs
 
-    override fun getValue(thisRef: Any?, property: KProperty<*>): T {
+    override fun getValue(thisRef: Any?, property: KProperty<*>): T? {
         name = property.key(name)
         return getPreference(name, default)
     }
 
-    override fun setValue(thisRef: Any?, property: KProperty<*>, value: T) {
+    override fun setValue(thisRef: Any?, property: KProperty<*>, value: T?) {
         name = property.key(name)
         setPreference(name, value)
     }
 
-    fun delete() {
-        prefs.edit().remove(name).apply()
-    }
-
     @Suppress("UNCHECKED_CAST")
-    private fun getPreference(name: String, default: T?): T = with(prefs) {
+    private fun getPreference(name: String, default: T?): T? = with(prefs) {
         return when (default) {
             is String -> getString(name, default)
             is Long -> getLong(name, default)
@@ -57,7 +53,7 @@ class Kref<T>(
         } as T
     }
 
-    private fun setPreference(name: String, value: T) = with(prefs.edit()) {
+    private fun setPreference(name: String, value: T?) = with(prefs.edit()) {
         when (value) {
             is String -> putString(name, value)
             is Long -> putLong(name, value)

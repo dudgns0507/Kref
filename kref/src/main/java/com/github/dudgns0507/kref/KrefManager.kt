@@ -34,10 +34,4 @@ class KrefManager {
     fun clear() {
         prefs.edit()?.clear()?.apply()
     }
-
-    fun clear(property: Any) {
-        when(property) {
-            is Kref<*> -> property.delete()
-        }
-    }
 }

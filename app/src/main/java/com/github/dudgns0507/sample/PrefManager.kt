@@ -7,5 +7,5 @@ class PrefManager {
         val instance = PrefManager()
     }
 
-    var kString: String by Kref(default = "")
+    var kString: String? by Kref(default = null)
 }

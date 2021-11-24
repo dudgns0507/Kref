@@ -17,7 +17,7 @@ allprojects {
 }
 
 dependencies {
-    implementation 'com.github.dudgns0507:Kref:1.0.1'
+    implementation 'com.github.dudgns0507:Kref:1.1.0'
 }
 ```
 
@@ -35,9 +35,6 @@ class App: Application() {
         KrefManager.init(this)
         // KrefManager.init(this, "SharedPreference Name")
         // KrefManager.init(this, "SharedPreference Name", Context.MODE_PRIVATE)
-
-        // Clear SharedPreference
-        // KrefManager.instance.clear()
     }
 }
 ```
@@ -50,7 +47,7 @@ class PrefManager {
         val instance = PrefManager()
     }
 
-    var kString: String by StringPref(default = "")
+    var kString: String by Kref(default = "")
 }
 
 // getValue like this
@@ -58,6 +55,12 @@ PrefManager.instance.kString
 
 // setValue like this
 PrefManager.instance.kString = "Kref"
+
+// Clear all value
+KrefManager.instance.clear()
+
+// Clear value
+KrefManager.instance.kString.clear()
 ```
 
 Support Types:
@@ -66,13 +69,13 @@ Support Types:
 // default is default value when SharedPreference key-value is empty
 // name is SharedPreference key (if name is blank default is "{variable name}_Kref")
 
-var kref: String by StringPref(default = "", name = "")
-var kref: String? by StringNullablePref()
-var kref: Boolean by BooleanPref(default = false)
-var kref: Int by IntPref(default = 0)
-var kref: Long by LongPref(default = 0L)
-var kref: Float by FloatPref(default = 0F)
-var kref: List<Any> by ListPref(default = arrayListOf()))
+var kref: String by Kref(default = "", name = "")
+var kref: String? by Kref()
+var kref: Boolean by Kref(default = false)
+var kref: Int by Kref(default = 0)
+var kref: Long by Kref(default = 0L)
+var kref: Float by Kref(default = 0F)
+var kref: List<Any> by Kref(default = arrayListOf()))
 
 data class Test(
     var a: String
