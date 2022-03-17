@@ -17,7 +17,7 @@ allprojects {
 }
 
 dependencies {
-    implementation 'com.github.dudgns0507:Kref:1.1.0'
+    implementation 'com.github.dudgns0507:Kref:${latest release version}'
 }
 ```
 
@@ -25,39 +25,22 @@ dependencies {
 How do I use Kref?
 -------------------
 
-Initialize KrefManager:
-
-```kotlin
-class App: Application() {
-    override fun onCreate() {
-        super.onCreate()
-
-        KrefManager.init(this)
-        // KrefManager.init(this, "SharedPreference Name")
-        // KrefManager.init(this, "SharedPreference Name", Context.MODE_PRIVATE)
-    }
-}
-```
-
 Save data to SharedPreference (Example):
 
 ```kotlin
-class PrefManager {
-    companion object {
-        val instance = PrefManager()
-    }
+class PrefManager(
+    private val context: Context
+) {
+    private val prefs = context.getSharedPreferences(context.packageName, Context.MODE_PRIVATE)
 
-    var kString: String by Kref(default = "")
+    var kString: String by Kref(prefs, "")
 }
 
 // getValue like this
-PrefManager.instance.kString
+PrefManager(this).kString
 
 // setValue like this
-PrefManager.instance.kString = "Kref"
-
-// Clear all value
-KrefManager.instance.clear()
+PrefManager(this).kString = "Kref"
 ```
 
 Support Types:
@@ -66,13 +49,13 @@ Support Types:
 // default is default value when SharedPreference key-value is empty
 // name is SharedPreference key (if name is blank default is "{variable name}_Kref")
 
-var kref: String by Kref(default = "", name = "")
-var kref: String? by Kref(default = null)
-var kref: Boolean by Kref(default = false)
-var kref: Int by Kref(default = 0)
-var kref: Long by Kref(default = 0L)
-var kref: Float by Kref(default = 0F)
-var kref: List<Any> by Kref(default = arrayListOf()))
+var kref: String by Kref(prefs, default = "", name = "")
+var kref: String? by Kref(prefs, default = null)
+var kref: Boolean by Kref(prefs, default = false)
+var kref: Int by Kref(prefs, default = 0)
+var kref: Long by Kref(prefs, default = 0L)
+var kref: Float by Kref(prefs, default = 0F)
+var kref: List<Any> by Kref(prefs, default = arrayListOf())
 ```
 
 Author
