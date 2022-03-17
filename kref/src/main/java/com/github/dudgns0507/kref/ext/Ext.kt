@@ -10,14 +10,3 @@ fun Any?.toJson(): String {
         return ""
     }
 }
-
-fun String.key(): String {
-    return "${this}_Kref"
-}
-
-fun KProperty<*>.key(key: String): String {
-    return when {
-        key.isBlank() -> name.key()
-        else -> key
-    }
-}

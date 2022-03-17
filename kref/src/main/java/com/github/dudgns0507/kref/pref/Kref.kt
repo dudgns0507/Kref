@@ -1,29 +1,27 @@
 package com.github.dudgns0507.kref.pref
 
 import android.content.SharedPreferences
-import com.github.dudgns0507.kref.KrefManager
 import com.github.dudgns0507.kref.error.KrefException
-import com.github.dudgns0507.kref.ext.key
 import com.github.dudgns0507.kref.ext.toJson
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import kotlin.properties.ReadWriteProperty
-import kotlin.reflect.KClass
 import kotlin.reflect.KProperty
 
 class Kref<T>(
-    private val default: T?, var name: String = ""
+    private val prefs: SharedPreferences,
+    private val default: T?
 ) : ReadWriteProperty<Any?, T?> {
-    private val prefs: SharedPreferences = KrefManager.instance.prefs
+    private fun KProperty<*>.key(): String {
+        return "${name}_Kref"
+    }
 
     override fun getValue(thisRef: Any?, property: KProperty<*>): T? {
-        name = property.key(name)
-        return getPreference(name, default)
+        return getPreference(property.key(), default)
     }
 
     override fun setValue(thisRef: Any?, property: KProperty<*>, value: T?) {
-        name = property.key(name)
-        setPreference(name, value)
+        setPreference(property.key(), value)
     }
 
     @Suppress("UNCHECKED_CAST")
@@ -67,6 +65,7 @@ class Kref<T>(
             } catch (e: Exception) {
                 throw KrefException("This type is not supported in Kref")
             }
-        }.apply()
+        }
+        apply()
     }
 }
