@@ -2,7 +2,6 @@ package com.github.dudgns0507.kref.pref
 
 import android.content.SharedPreferences
 import com.github.dudgns0507.kref.error.KrefException
-import com.github.dudgns0507.kref.ext.toJson
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import kotlin.properties.ReadWriteProperty
@@ -14,6 +13,14 @@ class Kref<T>(
 ) : ReadWriteProperty<Any?, T?> {
     private fun KProperty<*>.key(): String {
         return "${name}_Kref"
+    }
+
+    private fun Any?.toJson(): String {
+        this?.let {
+            return Gson().toJson(it)
+        } ?: kotlin.run {
+            return ""
+        }
     }
 
     override fun getValue(thisRef: Any?, property: KProperty<*>): T? {
